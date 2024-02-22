@@ -13,7 +13,7 @@
 
     "mark": {
     "type": "line",
-    "color": "#ff5de7"},
+    "color": "#EC058E"},
 
   "encoding": {
     "x": {"field": "date", "type": "temporal"},
