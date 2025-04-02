@@ -1,33 +1,28 @@
-<head>    
-    <!-- The head tag links to resources our page needs and defines information about it. Tags in the <head> aren't displayed on the page. -->
+<section>
+    <div class="chart-description">
+        <h2>Project 2: Business Details App</h2>
+        <p>
+            The <strong>UK Business Details App</strong> is an interactive map-based tool that visualizes the names and addresses of UK importers and exporters trading with **non-EU countries** and **GB importers/exporters trading with the EU** in 2022 and 2023.
+        </p>
 
-    <!-- This is a link to a stylesheet which contains rules about how each element on the page should be defined-->
-    <link rel="stylesheet" type="text/css" href="portfolio.css">
-    <title>Louise Anokye's Data Portfolio</title> <!--
-</head>
+        <p>
+            This app supports **tariff and Rules of Origin analysis** by identifying which businesses trade specific products, aiding **supply chain analysis**, and highlighting their **geographical distribution** across the UK for **regional policy insights**.
+        </p>
 
-<body> 
-<!-- The body tag contains the elements that visitors to our page will see. -->
-    <h1 style="margin-bottom: 0px;"> <!-- we can also style elements directly in the HTML by setting the style= atrribute of a tag. -->
-        <!-- This is a header, it is the largest text on the page -->
-        Business details App
-    </h1>
-    </p>
-    <h4 style= "font-size: 13px;">
-        Business details App <br>
-    </h4>
-    <!-- We're organising the page into sections, with each section containing a chart, title and a description -->
-    <p>
-    <a href="index.html"> Back</a>
-    </p>
-    <section>
-        <div class="chart-description"> <!-- we are grouping the title and description together so we can style them together -->
-            <h2>Project 2: Business details App</h2>
-            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
-               The UK Business Details app plots the names and addresses of UK importers and exporters trading products with non-EU countries and GB importers and exporters trading products with EU countries in 2022 and 2023 onto a map. It aims to help support analysis on tariffs and Rules of Origin by identifying which businesses trade which product (which may help with supply chain analysis) and where these businesses are located in the UK (which may help with regional analysis). You can explore the map to identify individual businesses and click on the red/blue dots find out the business name, sector, which codes they traded in and when.
-            </p>
-        </div>
-    </section>
-</body>
-    
-</html>
+        <h3>Key Data Science Elements:</h3>
+        <ul>
+            <li><strong>Geospatial Analysis & Mapping:</strong> Utilized <code>leaflet</code> and <code>sf</code> to visualize business locations across the UK.</li>
+            <li><strong>Data Integration & Processing:</strong> Merged **business registration data, trade statistics, and tariff information** to create a comprehensive dataset.</li>
+            <li><strong>Interactive Visualization:</strong> Developed **clickable map markers** where users can explore **business names, traded sectors, product codes, and trade dates**.</li>
+            <li><strong>Time-Series Filtering:</strong> Users can **toggle between 2022 and 2023 data** to analyze trends over time.</li>
+            <li><strong>Supply Chain & Regional Insights:</strong> Identifies **key UK businesses by industry and location**, supporting trade and policy research.</li>
+        </ul>
+
+        <h3>Impact & Skills Demonstrated:</h3>
+        <ul>
+            <li><strong>Data-Driven Policy Insights:</strong> Helps policymakers identify **trade clusters, supply chain dependencies, and potential impacts of new trade policies**.</li>
+            <li><strong>Geospatial Data Science:</strong> Demonstrates proficiency in **mapping, spatial data processing, and interactive geographic analytics**.</li>
+            <li><strong>End-to-End Data Engineering:</strong> Includes **data cleaning, merging, visualization, and performance optimization**.</li>
+        </ul>
+    </div>
+</section>
