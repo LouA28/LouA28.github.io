@@ -1,33 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>    
     <!-- The head tag links to resources our page needs and defines information about it. Tags in the <head> aren't displayed on the page. -->
 
-    <!-- This is a link to a stylesheet which contains rules about how each element on the page should be defined-->
+    <!-- This is a link to a stylesheet which contains rules about how each element on the page should be defined -->
     <link rel="stylesheet" type="text/css" href="portfolio.css">
-    <title>Louise Anokye's Data Portfolio</title> <!--
+    <title>Louise Anokye's Data Portfolio</title>
 </head>
 
 <body> 
-<!-- The body tag contains the elements that visitors to our page will see. -->
-    <h1 style="margin-bottom: 0px;"> <!-- we can also style elements directly in the HTML by setting the style= atrribute of a tag. -->
-        <!-- This is a header, it is the largest text on the page -->
-        Econometrics project
+    <!-- The body tag contains the elements that visitors to our page will see. -->
+    <h1 style="margin-bottom: 0px;">
+        Econometrics Project
     </h1>
-    </p>
-    <h4 style= "font-size: 13px;">
-        Econometrics project <br>
-    </h4>
-    <!-- We're organising the page into sections, with each section containing a chart, title and a description -->
+    
     <p>
-    <a href="index.html"> Back</a>
+        <a href="index.html">Back</a>
     </p>
+
+    <!-- Project Description Section -->
+<section>
+        <h2>Project Overview</h2>
+        <p>
+            This econometrics project explores the determinants of <strong>Preference Utilisation Rates (PUR)</strong> under the 
+            <strong>UK-EU Trade and Cooperation Agreement (TCA)</strong>. Preference utilisation is a key metric in trade policy, indicating how 
+            effectively firms are taking advantage of zero-tariff provisions under the TCA.
+        </p>
+        <p>
+            The core research question is: <em>“What are the relative effects of tariff margins, Rules of Origin (RoO), and trade scale on PUR between the UK and EU?”</em>
+        </p>
+    </section>
+
     <section>
-        <div class="chart-description"> <!-- we are grouping the title and description together so we can style them together -->
-            <h2>Project 3: Econometrics project </h2>
-            <p> <!-- This is a paragraph, it's the main way to display text on a web page -->
-               Econometrics project
-            </p>
-        </div>
+        <h2>Econometric Strategy</h2>
+        <p>
+            Guided by established literature—particularly Nilsson (2015) and Ayele et al. (2023)—the determinants of PUR are grouped into three key effects:
+        </p>
+        <ul>
+            <li><strong>Margin Effect:</strong> The incentive created by tariff differentials between MFN and preferential rates.</li>
+            <li><strong>RoO Effect:</strong> The restrictiveness or complexity of the rules firms must meet to qualify for preferences.</li>
+            <li><strong>Scale Effect:</strong> The size of trade flows, which can affect firms' ability to absorb compliance costs.</li>
+        </ul>
+        <p>
+            I ran two model specifications using Python (in Visual Studio Code):
+        </p>
+        <ul>
+            <li> A standard <strong>Ordinary Least Squares (OLS)</strong> model</li>
+            <li> A <strong>Fractional Logit Model</strong>—appropriate for a dependent variable bounded between 0 and 1</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Tools and Methods</h2>
+        <ul>
+            <li><strong>Software:</strong> Python, VS Code, Overleaf (for academic write-up)</li>
+            <li><strong>Libraries:</strong> <code>statsmodels</code>, <code>pandas</code>, <code>matplotlib</code>, <code>linearmodels</code></li>
+            <li><strong>Data Prep:</strong> Feature engineering to derive log-scale variables, create dummy variables for HS codes and countries, and normalize restrictiveness indices.</li>
+            <li><strong>Model Diagnostics:</strong> Residual plots, heteroskedasticity checks, and sensitivity testing (e.g., excluding outliers, log-transforms)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Key Findings</h2>
+        <ul>
+            <li>The <strong>preferential margin</strong> had a statistically significant positive effect on PUR—suggesting tariff incentives matter.</li>
+            <li><strong>Restrictiveness of Rules of Origin</strong> negatively impacted PUR, particularly in sensitive agricultural sectors.</li>
+            <li><strong>Trade scale (log of preferential imports)</strong> correlated positively with PUR, supporting economies of scale in compliance.</li>
+        </ul>
+        <p>
+            These results align with broader literature and provide actionable insights into the barriers and incentives that shape trade behaviour under free trade agreements.
+        </p>
+    </section>
+
+    <section>
+        <h2>Visual Summary</h2>
+        <img src="b9064883-e8a0-4d17-8b8c-f6be7171084b.png" alt="Fractional Logit Result" style="max-width: 100%; border: 1px solid #ccc; margin-bottom: 20px;">
+        <img src="227ac279-b22a-436f-9854-b10bfee4fa69.png" alt="OLS Model Summary" style="max-width: 100%; border: 1px solid #ccc;">
+    </section>
+
+    <section>
+        <h2>What I Learned</h2>
+        <ul>
+            <li> How to select the right econometric model for bounded continuous outcomes</li>
+            <li> The importance of thoughtful variable transformation and clustering in cross-sectional trade data</li>
+            <li> How to communicate technical findings clearly in an academic-style report and in policy briefings</li>
+        </ul>
     </section>
 </body>
-    
 </html>
