@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PUR App — Louise Anokye</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0f0f;
+    --ink-muted: #5a5a5a;
+    --ink-faint: #9a9a9a;
+    --paper: #fafaf8;
+    --paper-raised: #ffffff;
+    --rule: #e4e4e0;
+    --accent: #9b1d5a;
+    --accent-light: #fce8f3;
+    --accent-mid: #c2185b;
+    --tag-bg: #f0f0ee;
+    --radius: 4px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 56px;
+  }
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-back {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+  }
+  .nav-back:hover { color: var(--accent); }
+
+  /* HERO */
+  .project-hero {
+    padding: 120px 40px 60px;
+    max-width: 860px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--rule);
+  }
+  .project-type {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent-mid);
+    background: transparent;
+    border: 1.5px solid var(--accent-mid);
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 24px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .project-summary {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    max-width: 640px;
+    margin-bottom: 36px;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 8px;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .meta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .meta-value {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  /* CONTENT */
+  .project-body {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 60px 40px 100px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 80px;
+    align-items: start;
+  }
+  .project-main { display: flex; flex-direction: column; gap: 48px; }
+
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 16px;
+  }
+  p {
+    font-size: 14.5px;
+    color: var(--ink-muted);
+    line-height: 1.75;
+    margin-bottom: 12px;
+  }
+  p:last-child { margin-bottom: 0; }
+
+  /* FEATURE LIST */
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .feature-item {
+    display: grid;
+    grid-template-columns: 28px 1fr;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .feature-icon {
+    width: 28px;
+    height: 28px;
+    background: var(--accent-light);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .feature-icon svg { width: 14px; height: 14px; stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .feature-title {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 3px;
+  }
+  .feature-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* SIDEBAR */
+  .project-sidebar { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 76px; }
+  .sidebar-block {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 24px;
+  }
+  .sidebar-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--accent-light);
+  }
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-muted);
+    background: var(--tag-bg);
+    padding: 4px 10px;
+    border-radius: 3px;
+  }
+  .outcome-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .outcome-list li {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+  }
+  .outcome-list li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 11px;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 0;
+  }
+
+  /* PIPELINE VISUAL */
+  .pipeline-wrap {
+    background: var(--accent-light);
+    border-radius: var(--radius);
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 28px 40px;
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p { font-size: 12px; color: var(--ink-faint); }
+  .footer-link {
+    font-size: 12px;
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .footer-link:hover { text-decoration: underline; }
+
+  @media (max-width: 700px) {
+    nav { padding: 0 20px; }
+    .project-hero { padding: 100px 20px 40px; }
+    .project-body { grid-template-columns: 1fr; padding: 40px 20px 60px; gap: 40px; }
+    .project-sidebar { position: static; }
+    footer { padding: 20px; flex-direction: column; gap: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-name" href="index.html">Louise Anokye</a>
+  <a class="nav-back" href="index.html#projects">← Back to projects</a>
+</nav>
+
+<div class="project-hero">
+  <div class="project-type">Dashboard · Pipeline</div>
+  <h1>Import Preference Utilisation Rate App</h1>
+  <p class="project-summary">An end-to-end interactive analytics application built in R Shiny — combining an automated ETL pipeline, geospatial mapping, time-series visualisation, and downloadable reporting on millions of rows of structured import data.</p>
+  <div class="meta-row">
+    <div class="meta-item">
+      <span class="meta-label">Built with</span>
+      <span class="meta-value">R Shiny, ggplot2, Leaflet, SQL</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Type</span>
+      <span class="meta-value">Interactive Dashboard</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Data scale</span>
+      <span class="meta-value">Millions of rows</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Users</span>
+      <span class="meta-value">50+ stakeholders</span>
+    </div>
+  </div>
+</div>
+
+<div class="project-body">
+  <div class="project-main">
+
+    <div>
+      <h2>Overview</h2>
+      <p>This application was designed to make large, complex import datasets explorable and actionable for a wide range of users — from technical analysts to senior non-technical stakeholders. The core challenge was taking raw, high-volume structured data and turning it into something interactive, fast, and genuinely useful.</p>
+      <p>The app integrates an automated data pipeline that extracts, cleans, and structures the data on each refresh — meaning users always see up-to-date outputs without any manual intervention. From there, all analysis and visualisation happens in real time inside the Shiny application.</p>
+    </div>
+
+    <hr class="section-divider">
+
+    <div>
+      <h2>What it does</h2>
+      <ul class="feature-list">
+        <li class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Automated ETL pipeline</div>
+            <p class="feature-desc">Scripts automatically extract, transform, and load raw import data using R, dplyr, and data.table — handling missing values, schema inconsistencies, and large file sizes without manual intervention.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Geospatial choropleth mapping</div>
+            <p class="feature-desc">Interactive country-level maps built with Leaflet and sf, allowing users to visually explore geographic patterns at a glance and drill into specific regions dynamically.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><polyline points="3 9 21 9"/><polyline points="9 21 9 9"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Time-series visualisation</div>
+            <p class="feature-desc">Trend charts built in ggplot2 and Plotly showing how utilisation rates evolve over time across HS product sections and trading partners, with hover tooltips and zoom functionality.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Dynamic filtering and user controls</div>
+            <p class="feature-desc">Users can filter by country, product section, time period, and partner — all controls update every chart and map in real time using Shiny's reactive programming model.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Downloadable reports</div>
+            <p class="feature-desc">One-click export of filtered data and charts as formatted reports, allowing stakeholders to take outputs directly into briefings and presentations.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <hr class="section-divider">
+
+    <div>
+      <h2>Pipeline architecture</h2>
+      <p>The application follows a clean three-stage pipeline — data ingestion and transformation, then delivery through an interactive front end with multiple output types.</p>
+      <div class="pipeline-wrap">
+        <svg viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:480px;">
+          <defs>
+            <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+              <path d="M0,0 L0,7 L7,3.5 z" fill="#c2185b"/>
+            </marker>
+          </defs>
+          <!-- Stage boxes -->
+          <rect x="10" y="60" width="110" height="48" rx="6" fill="white" stroke="#9b1d5a" stroke-width="1.5"/>
+          <text x="65" y="80" font-family="JetBrains Mono, monospace" font-size="10" fill="#9b1d5a" text-anchor="middle" font-weight="500">Raw Data</text>
+          <text x="65" y="96" font-family="JetBrains Mono, monospace" font-size="9" fill="#c2185b" text-anchor="middle">Import datasets</text>
+
+          <line x1="120" y1="84" x2="148" y2="84" stroke="#c2185b" stroke-width="1.5" marker-end="url(#arr)"/>
+
+          <rect x="150" y="60" width="110" height="48" rx="6" fill="white" stroke="#9b1d5a" stroke-width="1.5"/>
+          <text x="205" y="80" font-family="JetBrains Mono, monospace" font-size="10" fill="#9b1d5a" text-anchor="middle" font-weight="500">ETL Pipeline</text>
+          <text x="205" y="96" font-family="JetBrains Mono, monospace" font-size="9" fill="#c2185b" text-anchor="middle">R · dplyr · SQL</text>
+
+          <line x1="260" y1="84" x2="288" y2="84" stroke="#c2185b" stroke-width="1.5" marker-end="url(#arr)"/>
+
+          <rect x="290" y="60" width="110" height="48" rx="6" fill="white" stroke="#9b1d5a" stroke-width="1.5"/>
+          <text x="345" y="80" font-family="JetBrains Mono, monospace" font-size="10" fill="#9b1d5a" text-anchor="middle" font-weight="500">Shiny App</text>
+          <text x="345" y="96" font-family="JetBrains Mono, monospace" font-size="9" fill="#c2185b" text-anchor="middle">Reactive UI</text>
+
+          <!-- Outputs -->
+          <line x1="345" y1="108" x2="300" y2="138" stroke="#c2185b" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="248" y="138" width="100" height="30" rx="4" fill="#fce8f3" stroke="#9b1d5a" stroke-width="1"/>
+          <text x="298" y="157" font-family="JetBrains Mono, monospace" font-size="9" fill="#9b1d5a" text-anchor="middle">Map View</text>
+
+          <line x1="345" y1="108" x2="345" y2="138" stroke="#c2185b" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="360" y="138" width="80" height="30" rx="4" fill="#fce8f3" stroke="#9b1d5a" stroke-width="1"/>
+          <text x="400" y="157" font-family="JetBrains Mono, monospace" font-size="9" fill="#9b1d5a" text-anchor="middle">Charts</text>
+
+          <line x1="345" y1="108" x2="390" y2="138" stroke="#c2185b" stroke-width="1.5" marker-end="url(#arr)"/>
+          <rect x="448" y="138" width="62" height="30" rx="4" fill="#fce8f3" stroke="#9b1d5a" stroke-width="1"/>
+          <text x="479" y="157" font-family="JetBrains Mono, monospace" font-size="9" fill="#9b1d5a" text-anchor="middle">Reports</text>
+        </svg>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div>
+      <h2>Technical challenges</h2>
+      <p>The main engineering challenges were around performance — the underlying dataset is large and multi-dimensional, meaning naive implementations would result in slow load times and unresponsive filtering. This was solved through a combination of pre-aggregation during the ETL stage, efficient data structures (data.table over base R), and careful use of Shiny's reactive programming to minimise unnecessary recalculation.</p>
+      <p>Handling missing and inconsistent data across multiple source files was also a significant wrangling challenge, requiring robust cleaning logic that could account for varying schemas and reporting periods without breaking downstream visualisations.</p>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="project-sidebar">
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">Tech stack</div>
+      <div class="tag-cloud">
+        <span class="tag">R Shiny</span>
+        <span class="tag">ggplot2</span>
+        <span class="tag">Plotly</span>
+        <span class="tag">Leaflet</span>
+        <span class="tag">sf</span>
+        <span class="tag">dplyr</span>
+        <span class="tag">data.table</span>
+        <span class="tag">tidyverse</span>
+        <span class="tag">SQL</span>
+      </div>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">Skills demonstrated</div>
+      <ul class="outcome-list">
+        <li>End-to-end pipeline design and automation</li>
+        <li>Interactive dashboard development</li>
+        <li>Geospatial data visualisation</li>
+        <li>Performance optimisation on large datasets</li>
+        <li>Stakeholder-facing UI design</li>
+        <li>Time-series analysis and charting</li>
+      </ul>
+    </div>
+
+    <div class="sidebar-block">
+      <div class="sidebar-label">Project type</div>
+      <ul class="outcome-list">
+        <li>Solo project</li>
+        <li>Interactive web application</li>
+        <li>Production tool used by 50+ users</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <p>Louise Anokye · Data Portfolio</p>
+  <a class="footer-link" href="index.html">← Back to all projects</a>
+</footer>
+
+</body>
+</html>

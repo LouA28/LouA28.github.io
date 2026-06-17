@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Louise Anokye — Data Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0f0f;
+    --ink-muted: #5a5a5a;
+    --ink-faint: #9a9a9a;
+    --paper: #fafaf8;
+    --paper-raised: #ffffff;
+    --rule: #e4e4e0;
+    --accent: #9b1d5a;
+    --accent-light: #fce8f3;
+    --accent-mid: #c2185b;
+    --tag-bg: #f0f0ee;
+    --radius: 4px;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250,250,248,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    height: 56px;
+  }
+  .nav-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 17px;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ink-muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+
+  /* HERO */
+  .hero {
+    padding: 140px 40px 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .hero-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--accent-mid);
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: inline-block;
+    background: transparent;
+    border: 1.5px solid var(--accent-mid);
+    padding: 6px 16px;
+    border-radius: 20px;
+  }
+  .hero-eyebrow::before { display: none; content: none; }
+  h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    margin-bottom: 28px;
+  }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-desc {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-muted);
+    max-width: 600px;
+    margin-bottom: 40px;
+  }
+  .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--ink);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--ink);
+    padding: 12px 24px;
+    border-radius: var(--radius);
+    border: 1px solid var(--rule);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-secondary:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+  /* SECTIONS */
+  section {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px 100px;
+  }
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 48px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 32px;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+
+  /* PROJECTS — 2x2 grid */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .project-card {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+  }
+  .project-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.09);
+    transform: translateY(-3px);
+  }
+
+  .project-visual {
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    min-height: 180px;
+  }
+  .project-visual.v2 { background: #f0f4ff; }
+  .project-visual.v3 { background: #fff5f0; }
+
+  .visual-diagram { width: 100%; max-width: 240px; }
+
+  .project-content {
+    padding: 28px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+  }
+  .project-meta { display: flex; align-items: center; gap: 10px; }
+  .project-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.06em;
+  }
+  .project-type {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--accent-mid);
+    background: var(--accent-light);
+    padding: 3px 10px;
+    border-radius: 20px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  h3 {
+    font-family: 'DM Serif Display', serif;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--ink);
+  }
+  .project-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.65;
+  }
+  .project-highlights {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .project-highlights li {
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .project-highlights li::before {
+    content: '→';
+    color: var(--accent);
+    font-size: 11px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: auto;
+    padding-top: 6px;
+  }
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-muted);
+    background: var(--tag-bg);
+    padding: 3px 8px;
+    border-radius: 3px;
+    letter-spacing: 0.02em;
+  }
+  .project-link-row {
+    padding: 0 28px 20px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.01em;
+    text-decoration: none;
+  }
+  .project-link-row:hover { text-decoration: underline; }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .skill-block {
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    padding: 24px 24px 20px;
+    border-radius: var(--radius);
+  }
+  .skill-category {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-mid);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--accent-light);
+  }
+  .skill-items { display: flex; flex-direction: column; gap: 10px; }
+  .skill-item { display: flex; justify-content: space-between; align-items: center; }
+  .skill-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .skill-bar-wrap {
+    width: 72px;
+    height: 3px;
+    background: var(--rule);
+    border-radius: 2px;
+  }
+  .skill-bar {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+  .skill-note {
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-top: 12px;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* EXPERIENCE TIMELINE */
+  .timeline { display: flex; flex-direction: column; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 36px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .timeline-item:last-child { border-bottom: none; }
+  .timeline-left { padding-top: 3px; }
+  .timeline-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.04em;
+    margin-bottom: 6px;
+  }
+  .timeline-company { font-size: 13px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .timeline-location { font-size: 12px; color: var(--ink-faint); }
+  .timeline-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+  .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .timeline-bullets li {
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+  }
+  .timeline-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 5px;
+    height: 1px;
+    background: var(--ink-faint);
+  }
+
+  /* CONTACT */
+  .contact-block {
+    background: #0f0f0f;
+    color: #fff;
+    border-radius: var(--radius);
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .contact-heading {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .contact-sub { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.6; }
+  .contact-links { display: flex; flex-direction: column; gap: 12px; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+    padding: 14px 20px;
+    border: 1px solid var(--accent-mid);
+    border-radius: var(--radius);
+    background: rgba(194,24,91,0.12);
+  }
+  .contact-link:hover { background: rgba(194,24,91,0.28); border-color: #e91e8c; }
+  .contact-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--accent-mid);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+    color: #fff;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 28px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer p { font-size: 12px; color: var(--ink-faint); }
+
+  /* PIPELINE SVG */
+  .pipeline-node { fill: var(--paper-raised); stroke: #9b1d5a; stroke-width: 1.5; }
+  .pipeline-text { font-family: 'JetBrains Mono', monospace; font-size: 9px; fill: #9b1d5a; text-anchor: middle; }
+  .pipeline-arrow { stroke: #c2185b; stroke-width: 1.5; fill: none; marker-end: url(#arr); }
+
+  @media (max-width: 700px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    section { padding: 0 20px 60px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; gap: 8px; }
+    .contact-block { grid-template-columns: 1fr; padding: 40px 28px; gap: 32px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-name" href="#">Louise Anokye</a>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-eyebrow">Seeking roles in Data Analysis · Analytics Engineering · BI Development</div>
+  <h1>Building pipelines,<br><em>visualising insight,</em><br>driving decisions.</h1>
+  <p class="hero-desc">7 years building data pipelines, interactive dashboards, and quantitative models on large-scale structured datasets. Experienced in R, Python, SQL, and end-to-end analytics workflows — now bringing those skills into the private sector.</p>
+  <div class="hero-ctas">
+    <a class="btn-primary" href="#projects">View Projects</a>
+    <a class="btn-secondary" href="#">Download CV</a>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-header">
+    <h2>Projects</h2>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card">
+      <div class="project-visual">
+        <svg class="visual-diagram" viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+              <path d="M0,0 L0,6 L6,3 z" fill="#c2185b"/>
+            </marker>
+          </defs>
+          <rect x="10" y="80" width="56" height="28" rx="4" class="pipeline-node"/>
+          <text x="38" y="97" class="pipeline-text">Raw Data</text>
+          <line x1="66" y1="94" x2="86" y2="94" class="pipeline-arrow"/>
+          <rect x="86" y="80" width="56" height="28" rx="4" class="pipeline-node"/>
+          <text x="114" y="97" class="pipeline-text">ETL / SQL</text>
+          <line x1="142" y1="94" x2="162" y2="94" class="pipeline-arrow"/>
+          <rect x="162" y="80" width="56" height="28" rx="4" class="pipeline-node"/>
+          <text x="190" y="97" class="pipeline-text">Shiny App</text>
+          <line x1="190" y1="108" x2="150" y2="138" class="pipeline-arrow"/>
+          <rect x="104" y="138" width="56" height="24" rx="4" fill="#fce8f3" stroke="#9b1d5a" stroke-width="1"/>
+          <text x="132" y="153" class="pipeline-text">Map View</text>
+          <line x1="190" y1="108" x2="210" y2="138" class="pipeline-arrow"/>
+          <rect x="184" y="138" width="60" height="24" rx="4" fill="#fce8f3" stroke="#9b1d5a" stroke-width="1"/>
+          <text x="214" y="153" class="pipeline-text">Charts</text>
+          <line x1="190" y1="108" x2="190" y2="170" class="pipeline-arrow"/>
+          <rect x="157" y="170" width="66" height="22" rx="4" fill="#fce8f3" stroke="#9b1d5a" stroke-width="1"/>
+          <text x="190" y="184" class="pipeline-text">Downloads</text>
+        </svg>
+      </div>
+      <div class="project-content">
+        <div class="project-meta">
+          <span class="project-num">01</span>
+          <span class="project-type">Dashboard · Pipeline</span>
+        </div>
+        <h3>Import Preference Utilisation Rate App</h3>
+        <p class="project-desc">End-to-end R Shiny application with an automated ETL pipeline feeding interactive dashboards — geospatial mapping, time-series charts, country-level filtering, and one-click downloadable reports, all built on millions of rows of structured data.</p>
+        <ul class="project-highlights">
+          <li>Automated data extraction, transformation and loading using R, dplyr, and data.table</li>
+          <li>Geospatial choropleth maps (Leaflet + sf) and time-series charts (ggplot2, Plotly)</li>
+          <li>Reactive programming optimised for high-volume dataset performance</li>
+          <li>User-controlled filtering with downloadable report exports</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">R Shiny</span>
+          <span class="tag">ggplot2</span>
+          <span class="tag">Plotly</span>
+          <span class="tag">Leaflet</span>
+          <span class="tag">dplyr</span>
+          <span class="tag">SQL</span>
+        </div>
+      </div>
+      <a class="project-link-row" href="https://loua28.github.io/purapp.html" target="_blank">View Project →</a>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card">
+      <div class="project-visual v2">
+        <svg class="visual-diagram" viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg">
+          <rect x="20" y="20" width="220" height="28" rx="6" fill="white" stroke="#c5cae9" stroke-width="1.5"/>
+          <text x="36" y="38" font-family="JetBrains Mono, monospace" font-size="10" fill="#9fa8da">Search product code or country...</text>
+          <rect x="20" y="60" width="220" height="22" rx="3" fill="white" stroke="#e8eaf6" stroke-width="1"/>
+          <rect x="28" y="67" width="8" height="8" rx="2" fill="#5c6bc0"/>
+          <text x="44" y="75" font-family="JetBrains Mono, monospace" font-size="9" fill="#3949ab">0101 · Horses · EU · CTH</text>
+          <rect x="20" y="86" width="220" height="22" rx="3" fill="#eef2ff" stroke="#c5cae9" stroke-width="1"/>
+          <rect x="28" y="93" width="8" height="8" rx="2" fill="#3f51b5"/>
+          <text x="44" y="101" font-family="JetBrains Mono, monospace" font-size="9" fill="#283593">0201 · Beef · UK · WO</text>
+          <rect x="20" y="112" width="220" height="22" rx="3" fill="white" stroke="#e8eaf6" stroke-width="1"/>
+          <rect x="28" y="119" width="8" height="8" rx="2" fill="#7986cb"/>
+          <text x="44" y="127" font-family="JetBrains Mono, monospace" font-size="9" fill="#3949ab">0207 · Poultry · EU · CTSH</text>
+          <rect x="20" y="148" width="50" height="18" rx="9" fill="#e8eaf6"/>
+          <text x="45" y="160" font-family="Inter, sans-serif" font-size="9" fill="#3949ab" text-anchor="middle">EU ×</text>
+          <rect x="76" y="148" width="66" height="18" rx="9" fill="#e8eaf6"/>
+          <text x="109" y="160" font-family="Inter, sans-serif" font-size="9" fill="#3949ab" text-anchor="middle">Chapter 02 ×</text>
+        </svg>
+      </div>
+      <div class="project-content">
+        <div class="project-meta">
+          <span class="project-num">02</span>
+          <span class="project-type">Analytics · Rules Engine</span>
+        </div>
+        <h3>TRoOGiverse — Rules of Origin Analytics Tool</h3>
+        <p class="project-desc">Interactive Shiny application enabling users to search and navigate thousands of complex, multi-condition rule sets across product categories and trading partners — making highly technical regulatory logic accessible to non-technical users.</p>
+        <ul class="project-highlights">
+          <li>Structured and modelled nested rule logic across thousands of product-country combinations</li>
+          <li>Dynamic search and filtering for non-technical users exploring high-cardinality categorical data</li>
+          <li>Designed for scalability and speed with large reference datasets</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">R Shiny</span>
+          <span class="tag">tidyverse</span>
+          <span class="tag">Data Modelling</span>
+          <span class="tag">UI/UX</span>
+        </div>
+      </div>
+      <a class="project-link-row" href="https://loua28.github.io/troogiverse.html" target="_blank">View Project →</a>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card">
+      <div class="project-visual v3">
+        <svg class="visual-diagram" viewBox="0 0 260 180" xmlns="http://www.w3.org/2000/svg">
+          <text x="130" y="18" font-family="JetBrains Mono, monospace" font-size="9" fill="#bf360c" text-anchor="middle" letter-spacing="0.05em">COEFFICIENT PLOT</text>
+          <line x1="90" y1="25" x2="90" y2="165" stroke="#ffccbc" stroke-width="1" stroke-dasharray="3,3"/>
+          <text x="82" y="50" font-family="JetBrains Mono, monospace" font-size="9" fill="#78909c" text-anchor="end">Tariff rate</text>
+          <line x1="86" y1="46" x2="140" y2="46" stroke="#ff7043" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="113" cy="46" r="3.5" fill="#bf360c"/>
+          <text x="82" y="76" font-family="JetBrains Mono, monospace" font-size="9" fill="#78909c" text-anchor="end">GDP partner</text>
+          <line x1="86" y1="72" x2="168" y2="72" stroke="#ff7043" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="142" cy="72" r="3.5" fill="#bf360c"/>
+          <text x="82" y="106" font-family="JetBrains Mono, monospace" font-size="9" fill="#78909c" text-anchor="end">Distance</text>
+          <line x1="86" y1="102" x2="68" y2="102" stroke="#ff7043" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="77" cy="102" r="3.5" fill="#bf360c"/>
+          <text x="82" y="136" font-family="JetBrains Mono, monospace" font-size="9" fill="#78909c" text-anchor="end">FTA dummy</text>
+          <line x1="86" y1="132" x2="156" y2="132" stroke="#ff7043" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="131" cy="132" r="3.5" fill="#bf360c"/>
+          <text x="82" y="162" font-family="JetBrains Mono, monospace" font-size="9" fill="#78909c" text-anchor="end">NTM index</text>
+          <line x1="86" y1="158" x2="72" y2="158" stroke="#ff7043" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="79" cy="158" r="3.5" fill="#bf360c"/>
+        </svg>
+      </div>
+      <div class="project-content">
+        <div class="project-meta">
+          <span class="project-num">03</span>
+          <span class="project-type">Quantitative Modelling</span>
+        </div>
+        <h3>Econometric Modelling — Agricultural Import Drivers</h3>
+        <p class="project-desc">Research project applying panel data econometrics to a large product-country dataset to identify the key statistical drivers of import volumes. Full modelling workflow from data cleaning through to visualised coefficient outputs and diagnostics.</p>
+        <ul class="project-highlights">
+          <li>Panel regression with product- and country-level fixed effects on granular structured data</li>
+          <li>Tobit and fractional logit specifications for bounded and censored outcome variables</li>
+          <li>Full statistical diagnostics, residual analysis, and coefficient plot visualisation in R</li>
+          <li>Outputs presented to senior stakeholders as written briefing with visual summaries</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">R</span>
+          <span class="tag">Python</span>
+          <span class="tag">Panel Data</span>
+          <span class="tag">Regression</span>
+          <span class="tag">Hypothesis Testing</span>
+        </div>
+      </div>
+      <a class="project-link-row" href="https://loua28.github.io/econometrics.html" target="_blank">View Project →</a>
+    </div>
+
+    <!-- PROJECT 4 PLACEHOLDER -->
+    <div class="project-card" style="border-style: dashed; opacity: 0.6;">
+      <div class="project-visual" style="background: #f5f5f3; min-height:180px; flex-direction:column; gap:12px;">
+        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="20" cy="20" r="19" stroke="#9b1d5a" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <line x1="20" y1="12" x2="20" y2="28" stroke="#9b1d5a" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="12" y1="20" x2="28" y2="20" stroke="#9b1d5a" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#9b1d5a;letter-spacing:0.06em;text-transform:uppercase;">Coming soon</span>
+      </div>
+      <div class="project-content">
+        <div class="project-meta">
+          <span class="project-num">04</span>
+          <span class="project-type">In Progress</span>
+        </div>
+        <h3>Next Project</h3>
+        <p class="project-desc">A new project on a commercial or consumer dataset — demonstrating end-to-end analytics skills outside of the economics domain. Currently in development.</p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">Streamlit</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <h2>Technical Skills</h2>
+  </div>
+  <div class="skills-grid">
+
+    <div class="skill-block">
+      <div class="skill-category">Languages</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">R</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Python</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:70%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">SQL</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:80%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">HTML / CSS</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:55%"></div></div>
+        </div>
+      </div>
+      <p class="skill-note">Primary language is R; Python used for ML and analysis; SQL for data extraction and pipeline work.</p>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-category">Visualisation & Dashboards</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">R Shiny</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:95%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">ggplot2 / Plotly</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Power BI</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:72%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Tableau</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Matplotlib / Seaborn</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:68%"></div></div>
+        </div>
+      </div>
+      <p class="skill-note">Built multiple live Shiny apps with geospatial mapping, real-time filtering, and downloadable reports.</p>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-category">Data Engineering & Pipelines</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">ETL Pipeline Design</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">dplyr / data.table</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:92%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">pandas / NumPy</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:68%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Data Wrangling</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+        </div>
+      </div>
+      <p class="skill-note">Extensive experience cleaning, harmonising, and automating workflows on high-volume structured datasets.</p>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-category">Modelling & Statistics</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">Regression / Tobit / Logit</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:90%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Panel Data / Fixed Effects</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Time Series (ARIMA)</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Hypothesis Testing / A/B</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:82%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Classification / Clustering</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:62%"></div></div>
+        </div>
+      </div>
+      <p class="skill-note">Strong causal inference background; understands model identification and statistical assumptions — not just outputs.</p>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-category">Geospatial</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">Leaflet</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:85%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">sf (spatial R)</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:75%"></div></div>
+        </div>
+      </div>
+      <p class="skill-note">Built interactive choropleth maps with country-level filtering and dynamic data binding in Shiny.</p>
+    </div>
+
+    <div class="skill-block">
+      <div class="skill-category">Tools & Workflow</div>
+      <div class="skill-items">
+        <div class="skill-item">
+          <span class="skill-name">Git / GitHub</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Jupyter Notebooks</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:78%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Excel (advanced)</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:88%"></div></div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">LaTeX</span>
+          <div class="skill-bar-wrap"><div class="skill-bar" style="width:65%"></div></div>
+        </div>
+      </div>
+      <p class="skill-note">Experienced managing code-based analytical workflows and presenting outputs to technical and non-technical audiences.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <h2>Experience</h2>
+  </div>
+  <div class="timeline">
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-date">Oct 2022 — Present</div>
+        <div class="timeline-company">UK Government</div>
+        <div class="timeline-location">London</div>
+      </div>
+      <div class="timeline-right">
+        <div class="timeline-role">Senior Analyst (Data & Quantitative)</div>
+        <ul class="timeline-bullets">
+          <li>Led end-to-end analytical projects on multi-million row structured datasets, delivering model outputs to senior stakeholders via interactive dashboards and written briefings</li>
+          <li>Built and deployed R Shiny applications with automated ETL pipelines, geospatial mapping, and real-time filtering — used by 50+ stakeholders across teams</li>
+          <li>Developed econometric and ML models (Tobit, fractional logit, ARIMA time-series) to identify key drivers of outcome variables across large product-country datasets</li>
+          <li>Managed and mentored a team of analysts, providing technical oversight across R, Python, and SQL-based workflows</li>
+          <li>Designed Power BI and Tableau dashboards translating complex model outputs into accessible visuals for non-technical decision-makers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-date">Sept 2019 — Aug 2022</div>
+        <div class="timeline-company">UK Government</div>
+        <div class="timeline-location">London</div>
+      </div>
+      <div class="timeline-right">
+        <div class="timeline-role">Analyst (Data & Quantitative)</div>
+        <ul class="timeline-bullets">
+          <li>Built panel data regression models with product- and country-level fixed effects on large, high-cardinality structured datasets in R and Python</li>
+          <li>Cleaned, harmonised, and structured complex multi-source datasets at granular level using R and SQL — equivalent to SKU-level retail data at scale</li>
+          <li>Produced analytical briefings translating quantitative outputs into clear, actionable recommendations for senior decision-makers</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="timeline-item">
+      <div class="timeline-left">
+        <div class="timeline-date">Jun 2018 — Sept 2019</div>
+        <div class="timeline-company">Private Sector</div>
+        <div class="timeline-location">London</div>
+      </div>
+      <div class="timeline-right">
+        <div class="timeline-role">CRM & Data Analyst</div>
+        <ul class="timeline-bullets">
+          <li>Built customer segmentation models and predictive propensity models in Python and SQL to optimise commercial marketing campaign targeting</li>
+          <li>Analysed behavioural data to improve campaign conversion rates using A/B testing and statistical significance testing</li>
+          <li>Supported large-scale data migration and personalisation initiatives across commercial customer datasets</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <h2>Get in touch</h2>
+  </div>
+  <div class="contact-block">
+    <div>
+      <div class="contact-heading">Open to new opportunities</div>
+      <p class="contact-sub">Actively seeking Senior Data Analyst, Analytics Engineer, and BI Developer roles in the private sector. Based in London, open to hybrid working.</p>
+    </div>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:louise.anokye1@hotmail.co.uk">
+        <div class="contact-icon">✉</div>
+        louise.anokye1@hotmail.co.uk
+      </a>
+      <a class="contact-link" href="https://uk.linkedin.com/in/louise-anokye/" target="_blank">
+        <div class="contact-icon">in</div>
+        linkedin.com/in/louise-anokye
+      </a>
+      <a class="contact-link" href="https://github.com/LouA28" target="_blank">
+        <div class="contact-icon">gh</div>
+        github.com/LouA28
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Louise Anokye · Data Portfolio</p>
+  <p style="color:var(--ink-faint)">London, UK</p>
+</footer>
+
+</body>
+</html>

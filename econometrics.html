@@ -1,90 +1,293 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>    
-    <!-- The head tag links to resources our page needs and defines information about it. Tags in the <head> aren't displayed on the page. -->
-
-    <!-- This is a link to a stylesheet which contains rules about how each element on the page should be defined -->
-    <link rel="stylesheet" type="text/css" href="portfolio.css">
-    <title>Louise Anokye's Data Portfolio</title>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Econometrics Project — Louise Anokye</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0f0f;
+    --ink-muted: #5a5a5a;
+    --ink-faint: #9a9a9a;
+    --paper: #fafaf8;
+    --paper-raised: #ffffff;
+    --rule: #e4e4e0;
+    --accent: #9b1d5a;
+    --accent-light: #fce8f3;
+    --accent-mid: #c2185b;
+    --tag-bg: #f0f0ee;
+    --radius: 4px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--paper); color: var(--ink); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 56px; }
+  .nav-name { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+  .nav-back { font-size: 13px; font-weight: 500; color: var(--ink-muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent); }
+  .project-hero { padding: 120px 40px 60px; max-width: 860px; margin: 0 auto; border-bottom: 1px solid var(--rule); }
+  .project-type { font-size: 11px; font-weight: 600; color: var(--accent-mid); background: transparent; border: 1.5px solid var(--accent-mid); padding: 4px 14px; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; display: inline-block; margin-bottom: 24px; font-family: 'JetBrains Mono', monospace; }
+  h1 { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 52px); line-height: 1.1; letter-spacing: -0.03em; color: var(--ink); margin-bottom: 20px; }
+  .project-summary { font-size: 17px; line-height: 1.7; color: var(--ink-muted); max-width: 640px; margin-bottom: 36px; }
+  .meta-row { display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: 8px; }
+  .meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .meta-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+  .meta-value { font-size: 13px; font-weight: 500; color: var(--ink); }
+  .project-body { max-width: 860px; margin: 0 auto; padding: 60px 40px 100px; display: grid; grid-template-columns: 1fr 300px; gap: 80px; align-items: start; }
+  .project-main { display: flex; flex-direction: column; gap: 48px; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 16px; }
+  p { font-size: 14.5px; color: var(--ink-muted); line-height: 1.75; margin-bottom: 12px; }
+  p:last-child { margin-bottom: 0; }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+  .feature-item { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: flex-start; }
+  .feature-icon { width: 28px; height: 28px; background: var(--accent-light); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .feature-icon svg { width: 14px; height: 14px; stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .feature-title { font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .feature-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin: 0; }
+  .project-sidebar { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 76px; }
+  .sidebar-block { background: var(--paper-raised); border: 1px solid var(--rule); border-radius: var(--radius); padding: 24px; }
+  .sidebar-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-mid); margin-bottom: 14px; padding-bottom: 10px; border-bottom: 1px solid var(--accent-light); }
+  .tag-cloud { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-muted); background: var(--tag-bg); padding: 4px 10px; border-radius: 3px; }
+  .outcome-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .outcome-list li { font-size: 13px; color: var(--ink-muted); line-height: 1.5; padding-left: 14px; position: relative; }
+  .outcome-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; }
+  .section-divider { border: none; border-top: 1px solid var(--rule); margin: 0; }
+  .chart-wrap { background: #fff5f0; border-radius: var(--radius); padding: 32px; display: flex; align-items: center; justify-content: center; }
+  .model-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .model-table th { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint); padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--rule); }
+  .model-table td { padding: 12px 12px; color: var(--ink-muted); border-bottom: 1px solid var(--rule); vertical-align: top; line-height: 1.5; }
+  .model-table tr:last-child td { border-bottom: none; }
+  .model-table .model-name { font-weight: 600; color: var(--ink); font-size: 13px; }
+  .badge { display: inline-block; font-family: 'JetBrains Mono', monospace; font-size: 10px; padding: 2px 8px; border-radius: 3px; background: var(--accent-light); color: var(--accent); }
+  footer { border-top: 1px solid var(--rule); padding: 28px 40px; max-width: 860px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  footer p { font-size: 12px; color: var(--ink-faint); }
+  .footer-link { font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 500; }
+  .footer-link:hover { text-decoration: underline; }
+  @media (max-width: 700px) {
+    nav { padding: 0 20px; }
+    .project-hero { padding: 100px 20px 40px; }
+    .project-body { grid-template-columns: 1fr; padding: 40px 20px 60px; gap: 40px; }
+    .project-sidebar { position: static; }
+    footer { padding: 20px; flex-direction: column; gap: 8px; }
+  }
+</style>
 </head>
+<body>
 
-<body> 
-    <!-- The body tag contains the elements that visitors to our page will see. -->
-    <h1 style="margin-bottom: 0px;">
-        Econometrics Project
-    </h1>
-    
-    <p>
-        <a href="index.html">Back</a>
-    </p>
+<nav>
+  <a class="nav-name" href="index.html">Louise Anokye</a>
+  <a class="nav-back" href="index.html#projects">← Back to projects</a>
+</nav>
 
-    <!-- Project Description Section -->
-<section>
-        <h2>Project Overview</h2>
-        <p>
-            This econometrics project explores the determinants of <strong>Preference Utilisation Rates (PUR)</strong> under the 
-            <strong>UK-EU Trade and Cooperation Agreement (TCA)</strong>. Preference utilisation is a key metric in trade policy, indicating how 
-            effectively firms are taking advantage of zero-tariff provisions under the TCA.
-        </p>
-        <p>
-            The core research question is: <em>“What are the relative effects of tariff margins, Rules of Origin (RoO), and trade scale on PUR between the UK and EU?”</em>
-        </p>
-    </section>
+<div class="project-hero">
+  <div class="project-type">Quantitative Modelling</div>
+  <h1>Econometric Modelling — Agricultural Import Drivers</h1>
+  <p class="project-summary">A quantitative research project applying panel data econometrics to a large product-country dataset to identify the key statistical drivers of agricultural import volumes — from data wrangling through modelling, diagnostics, and visualised outputs.</p>
+  <div class="meta-row">
+    <div class="meta-item">
+      <span class="meta-label">Built with</span>
+      <span class="meta-value">R, Python, ggplot2</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Type</span>
+      <span class="meta-value">Quantitative Research</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Methods</span>
+      <span class="meta-value">Panel data, Tobit, Logit, OLS</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Data</span>
+      <span class="meta-value">Product-country level, HS6</span>
+    </div>
+  </div>
+</div>
 
-    <section>
-        <h2>Econometric Strategy</h2>
-        <p>
-            Guided by established literature—particularly Nilsson (2015) and Ayele et al. (2023)—the determinants of PUR are grouped into three key effects:
-        </p>
-        <ul>
-            <li><strong>Margin Effect:</strong> The incentive created by tariff differentials between MFN and preferential rates.</li>
-            <li><strong>RoO Effect:</strong> The restrictiveness or complexity of the rules firms must meet to qualify for preferences.</li>
-            <li><strong>Scale Effect:</strong> The size of trade flows, which can affect firms' ability to absorb compliance costs.</li>
-        </ul>
-        <p>
-            I ran two model specifications using Python (in Visual Studio Code):
-        </p>
-        <ul>
-            <li> A standard <strong>Ordinary Least Squares (OLS)</strong> model</li>
-            <li> A <strong>Fractional Logit Model</strong>—appropriate for a dependent variable bounded between 0 and 1</li>
-        </ul>
-    </section>
+<div class="project-body">
+  <div class="project-main">
 
-    <section>
-        <h2>Tools and Methods</h2>
-        <ul>
-            <li><strong>Software:</strong> Python, VS Code, Overleaf (for academic write-up)</li>
-            <li><strong>Libraries:</strong> <code>statsmodels</code>, <code>pandas</code>, <code>matplotlib</code>, <code>linearmodels</code></li>
-            <li><strong>Data Prep:</strong> Feature engineering to derive log-scale variables, create dummy variables for HS codes and countries, and normalize restrictiveness indices.</li>
-            <li><strong>Model Diagnostics:</strong> Residual plots, heteroskedasticity checks, and sensitivity testing (e.g., excluding outliers, log-transforms)</li>
-        </ul>
-    </section>
+    <div>
+      <h2>Overview</h2>
+      <p>This project applies econometric modelling to understand what drives agricultural import volumes across a large cross-section of countries and product categories. Working at granular product-country level, the analysis identifies the relative importance of factors such as tariff rates, partner GDP, geographic distance, and trade agreement membership.</p>
+      <p>The project follows a complete quantitative workflow — from raw data cleaning and harmonisation, through model specification and estimation, to statistical diagnostics, robustness checks, and visualised coefficient outputs that can be presented to both technical and non-technical audiences.</p>
+    </div>
 
-    <section>
-        <h2>Key Findings</h2>
-        <ul>
-            <li>The <strong>preferential margin</strong> had a statistically significant positive effect on PUR—suggesting tariff incentives matter.</li>
-            <li><strong>Restrictiveness of Rules of Origin</strong> negatively impacted PUR, particularly in sensitive agricultural sectors.</li>
-            <li><strong>Trade scale (log of preferential imports)</strong> correlated positively with PUR, supporting economies of scale in compliance.</li>
-        </ul>
-        <p>
-            These results align with broader literature and provide actionable insights into the barriers and incentives that shape trade behaviour under free trade agreements.
-        </p>
-    </section>
+    <hr class="section-divider">
 
-    <section>
-        <h2>Visual Summary</h2>
-        <img src="b9064883-e8a0-4d17-8b8c-f6be7171084b.png" alt="Fractional Logit Result" style="max-width: 100%; border: 1px solid #ccc; margin-bottom: 20px;">
-        <img src="227ac279-b22a-436f-9854-b10bfee4fa69.png" alt="OLS Model Summary" style="max-width: 100%; border: 1px solid #ccc;">
-    </section>
+    <div>
+      <h2>Methodology</h2>
+      <ul class="feature-list">
+        <li class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Panel data regression with fixed effects</div>
+            <p class="feature-desc">Country- and product-level fixed effects absorb unobserved heterogeneity, isolating the within-variation that identifies causal relationships rather than spurious cross-sectional correlations.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Tobit model for censored outcomes</div>
+            <p class="feature-desc">Where the outcome variable is bounded at zero — reflecting non-importing observations rather than true zeros — a Tobit specification correctly accounts for the censored distribution and avoids biased OLS estimates.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Fractional logit for bounded rates</div>
+            <p class="feature-desc">For outcome variables bounded between 0 and 1 — such as utilisation rates — a fractional logit model is used rather than OLS, correctly handling the distributional properties of proportional data.</p>
+          </div>
+        </li>
+        <li class="feature-item">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div>
+            <div class="feature-title">Robustness checks and diagnostics</div>
+            <p class="feature-desc">Each specification is validated through residual analysis, heteroskedasticity tests, multicollinearity checks, and alternative specifications — ensuring findings are not sensitive to modelling choices.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
 
-    <section>
-        <h2>What I Learned</h2>
-        <ul>
-            <li> How to select the right econometric model for bounded continuous outcomes</li>
-            <li> The importance of thoughtful variable transformation and clustering in cross-sectional trade data</li>
-            <li> How to communicate technical findings clearly in an academic-style report and in policy briefings</li>
-        </ul>
-    </section>
+    <hr class="section-divider">
+
+    <div>
+      <h2>Models used</h2>
+      <table class="model-table">
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th>When used</th>
+            <th>Key advantage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="model-name">OLS with FE</span></td>
+            <td>Continuous, unbounded outcomes</td>
+            <td>Simple, interpretable baseline with unobserved heterogeneity controlled</td>
+          </tr>
+          <tr>
+            <td><span class="model-name">Tobit</span></td>
+            <td>Outcomes censored at zero</td>
+            <td>Correctly handles pile-up at zero without biasing coefficients</td>
+          </tr>
+          <tr>
+            <td><span class="model-name">Fractional Logit</span></td>
+            <td>Outcomes bounded 0–1</td>
+            <td>Respects distributional constraints; avoids impossible predictions</td>
+          </tr>
+          <tr>
+            <td><span class="model-name">Pooled OLS</span></td>
+            <td>Cross-sectional comparison</td>
+            <td>Baseline for comparing within vs between variation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <hr class="section-divider">
+
+    <div>
+      <h2>Visualising results</h2>
+      <p>Coefficient plots were used to communicate model outputs clearly — showing point estimates and confidence intervals for each predictor in a format that makes the direction, magnitude, and uncertainty of effects immediately readable, even for non-technical audiences.</p>
+      <div class="chart-wrap">
+        <svg viewBox="0 0 460 200" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:440px;">
+          <text x="230" y="18" font-family="JetBrains Mono, monospace" font-size="10" fill="#bf360c" text-anchor="middle" letter-spacing="0.05em">COEFFICIENT PLOT — KEY PREDICTORS</text>
+          <line x1="160" y1="26" x2="160" y2="188" stroke="#ffccbc" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="160" y="22" font-family="JetBrains Mono, monospace" font-size="8" fill="#bf360c" text-anchor="middle">0</text>
+
+          <text x="152" y="55" font-family="JetBrains Mono, monospace" font-size="9" fill="#78909c" text-anchor="end">Tariff rate</text>
+          <line x1="100" y1="52" x2="155" y2="52" stroke="#ffccbc" stroke-width="1"/>
+          <line x1="156" y1="51" x2="210" y2="51" stroke="#ff7043" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="183" cy="51" r="4" fill="#bf360c"/>
+
+          <text x="152" y="85" font-family="JetBrains Mono, monospace" font-size="9" fill="#78909c" text-anchor="end">GDP partner</text>
+          <line x1="190" y1="82" x2="155" y2="82" stroke="#ffccbc" stroke-width="1"/>
+          <line x1="156" y1="81" x2="280" y2="81" stroke="#ff7043" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="238" cy="81" r="4" fill="#bf360c"/>
+
+          <text x="152" y="115" font-family="JetBrains Mono, monospace" font-size="9" fill="#78909c" text-anchor="end">Distance</text>
+          <line x1="80" y1="112" x2="155" y2="112" stroke="#ffccbc" stroke-width="1"/>
+          <line x1="90" y1="111" x2="156" y2="111" stroke="#ff7043" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="123" cy="111" r="4" fill="#bf360c"/>
+
+          <text x="152" y="145" font-family="JetBrains Mono, monospace" font-size="9" fill="#78909c" text-anchor="end">FTA dummy</text>
+          <line x1="170" y1="142" x2="155" y2="142" stroke="#ffccbc" stroke-width="1"/>
+          <line x1="156" y1="141" x2="260" y2="141" stroke="#ff7043" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="218" cy="141" r="4" fill="#bf360c"/>
+
+          <text x="152" y="175" font-family="JetBrains Mono, monospace" font-size="9" fill="#78909c" text-anchor="end">NTM index</text>
+          <line x1="100" y1="172" x2="155" y2="172" stroke="#ffccbc" stroke-width="1"/>
+          <line x1="105" y1="171" x2="156" y2="171" stroke="#ff7043" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="131" cy="171" r="4" fill="#bf360c"/>
+
+          <text x="310" y="195" font-family="JetBrains Mono, monospace" font-size="8" fill="#9a9a9a">● point estimate  — 95% CI</text>
+        </svg>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <div>
+      <h2>Key findings</h2>
+      <p>The analysis found that tariff rates and geographic distance are significant negative predictors of import volumes, while partner GDP and free trade agreement membership are positive drivers. Non-tariff measure indices show a more nuanced relationship — acting as a barrier at high levels but showing limited effect at lower intensities.</p>
+      <p>Results were robust across alternative model specifications and subsamples, and the fixed effects estimates align with theoretical expectations from trade economics literature, providing confidence in the identification strategy.</p>
+    </div>
+
+  </div>
+
+  <div class="project-sidebar">
+    <div class="sidebar-block">
+      <div class="sidebar-label">Tech stack</div>
+      <div class="tag-cloud">
+        <span class="tag">R</span>
+        <span class="tag">Python</span>
+        <span class="tag">ggplot2</span>
+        <span class="tag">fixest</span>
+        <span class="tag">AER</span>
+        <span class="tag">pandas</span>
+        <span class="tag">statsmodels</span>
+        <span class="tag">LaTeX</span>
+      </div>
+    </div>
+    <div class="sidebar-block">
+      <div class="sidebar-label">Skills demonstrated</div>
+      <ul class="outcome-list">
+        <li>Panel data econometrics</li>
+        <li>Causal inference and identification</li>
+        <li>Model selection and diagnostics</li>
+        <li>Large dataset wrangling (R + Python)</li>
+        <li>Coefficient visualisation</li>
+        <li>Communicating statistical outputs</li>
+      </ul>
+    </div>
+    <div class="sidebar-block">
+      <div class="sidebar-label">Methods</div>
+      <ul class="outcome-list">
+        <li>OLS with fixed effects</li>
+        <li>Tobit (censored regression)</li>
+        <li>Fractional logit</li>
+        <li>Hypothesis testing</li>
+        <li>Residual & robustness analysis</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Louise Anokye · Data Portfolio</p>
+  <a class="footer-link" href="index.html">← Back to all projects</a>
+</footer>
+
 </body>
 </html>
