@@ -21,29 +21,11 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: var(--paper);
-    color: var(--ink);
-    font-size: 15px;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 100;
-    background: rgba(250,250,248,0.92);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--rule);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
-    height: 56px;
-  }
-  .nav-name { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
-  .nav-back { font-size: 13px; font-weight: 500; color: var(--ink-muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  body { font-family: 'Inter', sans-serif; background: var(--paper); color: var(--ink); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 56px; }
+  .nav-name { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--ink); letter-spacing: -0.01em; }
+  .nav-back { font-size: 13px; font-weight: 500; color: var(--ink-muted); display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
   .nav-back:hover { color: var(--accent); }
   .project-hero { padding: 120px 40px 60px; max-width: 860px; margin: 0 auto; border-bottom: 1px solid var(--rule); }
   .project-type { font-size: 11px; font-weight: 600; color: var(--accent-mid); background: transparent; border: 1.5px solid var(--accent-mid); padding: 4px 14px; border-radius: 20px; letter-spacing: 0.06em; text-transform: uppercase; display: inline-block; margin-bottom: 24px; font-family: 'JetBrains Mono', monospace; }
@@ -54,14 +36,14 @@
   .meta-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
   .meta-value { font-size: 13px; font-weight: 500; color: var(--ink); }
   .project-body { max-width: 860px; margin: 0 auto; padding: 60px 40px 100px; display: grid; grid-template-columns: 1fr 300px; gap: 80px; align-items: start; }
-  .project-main { display: flex; flex-direction: column; gap: 48px; }
-  h2 { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 16px; }
+  .project-main { display: flex; flex-direction: column; gap: 56px; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 26px; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
   p { font-size: 14.5px; color: var(--ink-muted); line-height: 1.75; margin-bottom: 12px; }
   p:last-child { margin-bottom: 0; }
   .feature-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-  .feature-item { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: flex-start; }
-  .feature-icon { width: 28px; height: 28px; background: var(--accent-light); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-  .feature-icon svg { width: 14px; height: 14px; stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .feature-item { display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: flex-start; }
+  .feature-icon { width: 36px; height: 36px; background: var(--accent-light); border: 1px solid var(--accent-mid); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .feature-icon svg { width: 16px; height: 16px; stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .feature-title { font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
   .feature-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin: 0; }
   .project-sidebar { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 76px; }
@@ -72,11 +54,11 @@
   .outcome-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .outcome-list li { font-size: 13px; color: var(--ink-muted); line-height: 1.5; padding-left: 14px; position: relative; }
   .outcome-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; }
-  .section-divider { border: none; border-top: 1px solid var(--rule); margin: 0; }
-  .ui-mockup { background: #f0f4ff; border-radius: var(--radius); padding: 32px; display: flex; align-items: center; justify-content: center; }
+  .section-divider { border: none; border-top: 1px solid var(--rule); margin: 8px 0; }
+  .ui-mockup { background: #f0f4ff; border-radius: var(--radius); padding: 40px 32px; display: flex; align-items: center; justify-content: center; margin-top: 20px; }
   footer { border-top: 1px solid var(--rule); padding: 28px 40px; max-width: 860px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
   footer p { font-size: 12px; color: var(--ink-faint); }
-  .footer-link { font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 500; }
+  .footer-link { font-size: 12px; color: var(--accent); font-weight: 500; }
   .footer-link:hover { text-decoration: underline; }
   @media (max-width: 700px) {
     nav { padding: 0 20px; }
@@ -91,13 +73,13 @@
 
 <nav>
   <a class="nav-name" href="index.html">Louise Anokye</a>
-  <a class="nav-back" href="index.html#projects">← Back to projects</a>
+  <a class="nav-back" href="index.html#projects">Back to projects</a>
 </nav>
 
 <div class="project-hero">
-  <div class="project-type">Analytics · Rules Engine</div>
+  <div class="project-type">Analytics · Search Tool</div>
   <h1>TRoOGiverse — Rules of Origin Analytics Tool</h1>
-  <p class="project-summary">An interactive Shiny application that makes thousands of complex, multi-condition trade rule sets searchable and explorable by anyone — translating highly technical regulatory logic into a clean, fast, user-friendly interface.</p>
+  <p class="project-summary">An interactive Shiny application that makes thousands of complex trade rules searchable and easy to navigate, built for users with no technical background as well as expert analysts.</p>
   <div class="meta-row">
     <div class="meta-item">
       <span class="meta-label">Built with</span>
@@ -109,11 +91,11 @@
     </div>
     <div class="meta-item">
       <span class="meta-label">Data scope</span>
-      <span class="meta-value">Thousands of product-country rules</span>
+      <span class="meta-value">Thousands of product and country rules</span>
     </div>
     <div class="meta-item">
       <span class="meta-label">Audience</span>
-      <span class="meta-value">Technical & non-technical users</span>
+      <span class="meta-value">Technical and non-technical users</span>
     </div>
   </div>
 </div>
@@ -123,11 +105,9 @@
 
     <div>
       <h2>Overview</h2>
-      <p>Rules of Origin are among the most technically complex elements of international trade agreements — each product category can have different qualifying conditions depending on the trading partner, the type of transformation applied, and the specific agreement in force. Navigating this manually is slow and error-prone, especially for non-specialist users.</p>
-      <p>TRoOGiverse solves this by structuring the entire rule set into a queryable, interactive database and wrapping it in a clean Shiny interface. Users can search by product code, country, or rule type and instantly see the relevant conditions — without needing to read through pages of legal text.</p>
+      <p>Trade rules are complicated. Each product category can have different qualifying conditions depending on where it is being traded, what agreement is in place, and how it was made. Looking these up manually is slow and often leads to errors, especially for people who are not specialists in this area.</p>
+      <p>TRoOGiverse solves this by putting all of those rules into a searchable, interactive tool. Users can type in a product code or country and instantly see the relevant conditions, without needing to read through legal documents or ask an analyst for help every time.</p>
     </div>
-
-    <hr class="section-divider">
 
     <div>
       <h2>What it does</h2>
@@ -138,7 +118,7 @@
           </div>
           <div>
             <div class="feature-title">Fast search across thousands of rules</div>
-            <p class="feature-desc">Users can search by HS product code, country, or rule type and instantly retrieve the relevant qualifying conditions — no manual lookup required.</p>
+            <p class="feature-desc">Users can search by product code, country, or rule type and get the relevant information instantly. No scrolling through long documents or relying on someone else to look it up.</p>
           </div>
         </li>
         <li class="feature-item">
@@ -146,8 +126,8 @@
             <svg viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
           </div>
           <div>
-            <div class="feature-title">Multi-dimension filtering</div>
-            <p class="feature-desc">Filter chips allow users to narrow results by trading partner, product chapter, and rule type simultaneously — all updates happen reactively without page reloads.</p>
+            <div class="feature-title">Filter by country, product, and rule type</div>
+            <p class="feature-desc">Users can narrow results using multiple filters at once. Everything updates instantly as filters are applied, with no page reloads or waiting.</p>
           </div>
         </li>
         <li class="feature-item">
@@ -155,8 +135,8 @@
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
           </div>
           <div>
-            <div class="feature-title">Structured data modelling</div>
-            <p class="feature-desc">The underlying rule logic — including nested conditions, exceptions, and alternative qualifying criteria — was structured into a relational data model that enables consistent querying across all rule types.</p>
+            <div class="feature-title">Structured data behind a simple interface</div>
+            <p class="feature-desc">The underlying rules data is complex, with many conditions, exceptions, and variations across products and countries. All of that was structured and modelled in R before being surfaced through a clean, easy to use interface.</p>
           </div>
         </li>
         <li class="feature-item">
@@ -164,8 +144,8 @@
             <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
           <div>
-            <div class="feature-title">Accessible to non-technical users</div>
-            <p class="feature-desc">The interface was designed so that non-specialists — trade operations teams, procurement staff, compliance teams — can use the tool independently without needing analyst support for every query.</p>
+            <div class="feature-title">Built for everyone, not just analysts</div>
+            <p class="feature-desc">The design was deliberately kept simple so that operations teams, procurement staff, and compliance colleagues could use it independently without needing training or support from a data analyst.</p>
           </div>
         </li>
         <li class="feature-item">
@@ -173,47 +153,18 @@
             <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
           </div>
           <div>
-            <div class="feature-title">Performance on high-cardinality data</div>
-            <p class="feature-desc">With thousands of unique product-country combinations, the app was built with performance front-of-mind — using efficient data structures and reactive caching to keep response times fast under real usage.</p>
+            <div class="feature-title">Stays fast as the dataset grows</div>
+            <p class="feature-desc">With thousands of product and country combinations, keeping the app responsive required careful design choices around how data is stored and retrieved. The app was built to stay fast even as the reference data expands.</p>
           </div>
         </li>
       </ul>
     </div>
 
-    <hr class="section-divider">
-
     <div>
-      <h2>Interface design</h2>
-      <p>A core design challenge was making a very large, structured dataset feel simple to navigate. The solution was a search-first interface — users start with a text query and progressively narrow results using filter chips, rather than facing a wall of dropdowns upfront.</p>
-      <div class="ui-mockup">
-        <svg viewBox="0 0 460 200" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:440px;">
-          <rect x="10" y="10" width="440" height="36" rx="8" fill="white" stroke="#c5cae9" stroke-width="1.5"/>
-          <text x="26" y="32" font-family="JetBrains Mono, monospace" font-size="11" fill="#9fa8da">Search product code, country, or rule type...</text>
-          <rect x="10" y="58" width="60" height="20" rx="10" fill="#e8eaf6"/>
-          <text x="40" y="72" font-family="Inter, sans-serif" font-size="10" fill="#3949ab" text-anchor="middle">EU ×</text>
-          <rect x="76" y="58" width="86" height="20" rx="10" fill="#e8eaf6"/>
-          <text x="119" y="72" font-family="Inter, sans-serif" font-size="10" fill="#3949ab" text-anchor="middle">Chapter 02 ×</text>
-          <rect x="168" y="58" width="50" height="20" rx="10" fill="#e8eaf6"/>
-          <text x="193" y="72" font-family="Inter, sans-serif" font-size="10" fill="#3949ab" text-anchor="middle">CTH ×</text>
-          <rect x="10" y="90" width="440" height="28" rx="3" fill="white" stroke="#e8eaf6" stroke-width="1"/>
-          <rect x="18" y="99" width="8" height="8" rx="2" fill="#5c6bc0"/>
-          <text x="34" y="108" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#3949ab">0201 · Beef cuts · EU · Change of Tariff Heading (CTH)</text>
-          <rect x="10" y="122" width="440" height="28" rx="3" fill="#eef2ff" stroke="#c5cae9" stroke-width="1"/>
-          <rect x="18" y="131" width="8" height="8" rx="2" fill="#3f51b5"/>
-          <text x="34" y="140" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#283593">0202 · Frozen beef · EU · Change of Tariff Heading (CTH)</text>
-          <rect x="10" y="154" width="440" height="28" rx="3" fill="white" stroke="#e8eaf6" stroke-width="1"/>
-          <rect x="18" y="163" width="8" height="8" rx="2" fill="#7986cb"/>
-          <text x="34" y="172" font-family="JetBrains Mono, monospace" font-size="9.5" fill="#3949ab">0203 · Pork cuts · EU · Wholly Obtained (WO)</text>
-        </svg>
-      </div>
-    </div>
-
-    <hr class="section-divider">
-
-    <div>
-      <h2>Technical challenges</h2>
-      <p>The biggest challenge was structuring the underlying rule data. Rules of Origin conditions are not uniform — different products have different rule types (Wholly Obtained, Change of Tariff Heading, Specific Process, etc.), some have multiple qualifying alternatives, and some have exceptions that only apply under certain conditions. Modelling all of this in a consistent, queryable structure required careful data design before any UI work could begin.</p>
-      <p>A secondary challenge was ensuring the app remained fast as the number of product-country combinations scaled. This was addressed through pre-filtering at the data layer and optimised reactive expressions that avoid redundant recalculation on every user interaction.</p>
+      <h2>Challenges</h2>
+      <p>The hardest part of this project was organising the underlying data. Trade rules are not uniform. Different products have different types of qualifying conditions, some have multiple alternatives, and some have exceptions that only apply in certain situations. Getting all of that into a consistent structure that could be queried cleanly took significant data modelling work before any of the app interface could be built.</p>
+      <p>This was also a collaborative project. Each analyst on the team built their own individual scripts covering different parts of the rule set. The challenge was then bringing all of those separate scripts together into a single central script that could pull from each one cleanly, without creating multiple versions of the same logic or risking one change breaking everything else. Building that structure required careful coordination and design so the whole team could keep working independently while the combined output stayed reliable.</p>
+      <p>Keeping the app fast as the number of combinations grew was also a challenge. This was handled by pre-filtering at the data level and making sure the app only recalculates what it needs to when a user changes a filter.</p>
     </div>
 
   </div>
@@ -226,26 +177,27 @@
         <span class="tag">tidyverse</span>
         <span class="tag">dplyr</span>
         <span class="tag">data.table</span>
-        <span class="tag">Reactive UI</span>
+        <span class="tag">shinyjs</span>
+        <span class="tag">DT</span>
         <span class="tag">HTML/CSS</span>
       </div>
     </div>
     <div class="sidebar-block">
       <div class="sidebar-label">Skills demonstrated</div>
       <ul class="outcome-list">
-        <li>Relational data modelling</li>
-        <li>Search and filtering UI design</li>
-        <li>Performance optimisation</li>
-        <li>Making complex data accessible</li>
-        <li>Shiny reactive programming</li>
-        <li>End-user experience design</li>
+        <li>Data modelling and structuring</li>
+        <li>Search and filter interface design</li>
+        <li>Building for non-technical users</li>
+        <li>Performance at scale</li>
+        <li>Shiny app development</li>
+        <li>User experience thinking</li>
       </ul>
     </div>
     <div class="sidebar-block">
       <div class="sidebar-label">Project type</div>
       <ul class="outcome-list">
         <li>Solo project</li>
-        <li>Interactive reference application</li>
+        <li>Live interactive application</li>
         <li>Designed for non-technical end users</li>
       </ul>
     </div>
@@ -254,7 +206,7 @@
 
 <footer>
   <p>Louise Anokye · Data Portfolio</p>
-  <a class="footer-link" href="index.html">← Back to all projects</a>
+  <a class="footer-link" href="index.html">Back to all projects</a>
 </footer>
 
 </body>
