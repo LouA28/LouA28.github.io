@@ -22,6 +22,8 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body { font-family: 'Inter', sans-serif; background: var(--paper); color: var(--ink); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .project-summary a, .project-summary a:visited { color: inherit; text-decoration: none; }
+  a { color: inherit; }
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(250,250,248,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--rule); display: flex; align-items: center; justify-content: space-between; padding: 0 40px; height: 56px; }
   .nav-name { font-family: 'DM Serif Display', serif; font-size: 17px; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
   .nav-back { font-size: 13px; font-weight: 500; color: var(--ink-muted); text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
@@ -35,14 +37,14 @@
   .meta-label { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
   .meta-value { font-size: 13px; font-weight: 500; color: var(--ink); }
   .project-body { max-width: 860px; margin: 0 auto; padding: 60px 40px 100px; display: grid; grid-template-columns: 1fr 300px; gap: 80px; align-items: start; }
-  .project-main { display: flex; flex-direction: column; gap: 48px; }
-  h2 { font-family: 'DM Serif Display', serif; font-size: 24px; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 16px; }
+  .project-main { display: flex; flex-direction: column; gap: 56px; }
+  h2 { font-family: 'DM Serif Display', serif; font-size: 26px; letter-spacing: -0.02em; color: var(--ink); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
   p { font-size: 14.5px; color: var(--ink-muted); line-height: 1.75; margin-bottom: 12px; }
   p:last-child { margin-bottom: 0; }
   .feature-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
-  .feature-item { display: grid; grid-template-columns: 28px 1fr; gap: 12px; align-items: flex-start; }
-  .feature-icon { width: 28px; height: 28px; background: var(--accent-light); border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
-  .feature-icon svg { width: 14px; height: 14px; stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+  .feature-item { display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: flex-start; }
+  .feature-icon { width: 36px; height: 36px; background: var(--accent-light); border: 1px solid var(--accent-mid); border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .feature-icon svg { width: 16px; height: 16px; stroke: var(--accent); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
   .feature-title { font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
   .feature-desc { font-size: 13px; color: var(--ink-muted); line-height: 1.6; margin: 0; }
   .project-sidebar { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 76px; }
@@ -53,8 +55,8 @@
   .outcome-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
   .outcome-list li { font-size: 13px; color: var(--ink-muted); line-height: 1.5; padding-left: 14px; position: relative; }
   .outcome-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; }
-  .section-divider { border: none; border-top: 1px solid var(--rule); margin: 0; }
-  .pipeline-wrap { background: var(--accent-light); border-radius: var(--radius); padding: 32px; display: flex; align-items: center; justify-content: center; }
+  .section-divider { border: none; border-top: 1px solid var(--rule); margin: 8px 0; }
+  .pipeline-wrap { background: var(--accent-light); border-radius: var(--radius); padding: 40px 32px; display: flex; align-items: center; justify-content: center; margin-top: 20px; }
   footer { border-top: 1px solid var(--rule); padding: 28px 40px; max-width: 860px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
   footer p { font-size: 12px; color: var(--ink-faint); }
   .footer-link { font-size: 12px; color: var(--accent); text-decoration: none; font-weight: 500; }
@@ -167,7 +169,7 @@
       <h2>How the data flows</h2>
       <p>Data comes in as raw files, gets cleaned and structured automatically, and then feeds into the Shiny app where users can explore it through maps, charts, and tables, or download it as a report.</p>
       <div class="pipeline-wrap">
-        <svg viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:480px;">
+        <svg viewBox="0 0 520 180" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width:560px;">
           <defs>
             <marker id="arr" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
               <path d="M0,0 L0,7 L7,3.5 z" fill="#c2185b"/>
